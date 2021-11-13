@@ -1,3 +1,4 @@
+import os
 import argparse
 import logging
 import torch.optim as optim
@@ -5,6 +6,7 @@ import torch.nn.functional as F
 from utils.utils import load_dataset
 from base.base_dataloader import BaseDataLoader
 from model.nnets import LogRes
+os.system('rm -f -r */__pycache__')
 logging.basicConfig(format='%(asctime)s -  %(message)s', datefmt='%m/%d/%Y %H:%M:%S', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
