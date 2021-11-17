@@ -70,6 +70,7 @@ class Trainer(nn.Module):
                 loss.backward()
                 self.optimiser.step()
                 
+            torch.cuda.empty_cache()
             pbar.set_postfix({'train_loss':loss.item()})
         avg_loss = losses / len(train_dataloader.dataset)
         self.history['train_loss'].append(avg_loss)
@@ -92,6 +93,7 @@ class Trainer(nn.Module):
                 correct += (y_hat == y).sum().item()
         avg_loss = losses / len(valid_dataloader.dataset)
         accuracy = metrics.accuracy_score(targets, y_hats)
+        torch.cuda.empty_cache()
         return avg_loss, accuracy
     
     def predict_proba(self, test_dataloader, gpu=True):
